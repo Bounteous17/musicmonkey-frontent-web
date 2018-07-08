@@ -1,0 +1,16 @@
+<div class="loginForm">
+  <div class="loginLayer">
+    <div class="loginArea">
+        <!-- <p>Envelope icon: <span class="glyphicon glyphicon-envelope"></span></p> -->
+        <i class="fa fa-android" aria-hidden="true"></i>
+        <h4 class="cust-login-spec">USER LOGIN</h4>
+      <div class="input-group login-input">
+        <input [(ngModel)]="username" type="text" class="form-control cust-login-input" placeholder="Username">
+      </div>
+      <div class="input-group login-input">
+        <input [(ngModel)]="password" type="password" class="form-control cust-login-input" placeholder="Password">
+      </div>
+      <button (click)="login()" class="btn btn-lg btn-primary btn-block login-button cust-login-button-action" type="submit">LOGIN</button>
+    </div>
+  </div>
+</div>
