@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/auth';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,32 +12,34 @@ export class LoginComponent implements OnInit {
 
   password: string;
   username: string;
+  comStarted: boolean;
 
   constructor(
     private toastr: ToastrService,
+    private _router: Router,
     private authenticationService: AuthenticationService,
-  ) {}
+  ) {
+    this.comStarted = true;
+  }
 
   ngOnInit() {
   }
 
   login() {
-    this.authenticationService.login({email: this.username, password: this.password})
+    this.authenticationService.login({username: this.username, password: this.password})
     .subscribe(
       (data)=> {
-        console.log(data);
+        sessionStorage.setItem('token', data.token);
+        this._router.navigate(['/play']);
       },
       (error)=> {
         this.showError(error.error.message);
-        console.log(error.error.message);
       }
     )
   }
 
   showError(message) {
-    this.toastr.error('Try again', message, {
-      timeOut: 4000,
-    });
+    this.toastr.error('Try again', message);
   }
 
 }

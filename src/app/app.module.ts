@@ -18,12 +18,18 @@ import 'rxjs/Rx';
 import { AppComponent } from './app.component';
 // Others
 import { routes } from './app.router';
+import { PlayComponent } from './play/play.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarLoggedComponent } from './navbar-logged/navbar-logged.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignupComponent,
+    PlayComponent,
+    NavbarComponent,
+    NavbarLoggedComponent,
   ],
   imports: [
     BrowserModule,
