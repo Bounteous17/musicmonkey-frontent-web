@@ -21,15 +21,26 @@ import { routes } from './app.router';
 import { PlayComponent } from './play/play.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NavbarLoggedComponent } from './navbar-logged/navbar-logged.component';
+import { HomeComponent } from './home/home.component';
+import { HomePlaylistComponent } from './home-playlist/home-playlist.component';
+import { HomeSliderComponent } from './home-slider/home-slider.component';
+// Dynamics
+import { AdService } from './ad.service';
+import { AdDirective } from './ad.directive';
+
 
 @NgModule({
   declarations: [
     AppComponent,
+    AdDirective,
     LoginComponent,
     SignupComponent,
     PlayComponent,
     NavbarComponent,
     NavbarLoggedComponent,
+    HomeComponent,
+    HomePlaylistComponent,
+    HomeSliderComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,8 +56,12 @@ import { NavbarLoggedComponent } from './navbar-logged/navbar-logged.component';
     routes
   ],
   providers: [
-    AuthenticationService
+    AuthenticationService,
+    AdService
   ],
+  entryComponents: [HomeComponent, HomePlaylistComponent, HomeSliderComponent],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor() {}
+}

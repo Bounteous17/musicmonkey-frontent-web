@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from "rxjs";
+import { getSessionStorage, setSessionStorge } from './utils';
 import 'rxjs/add/operator/do';
 
 @Injectable()
@@ -14,18 +15,15 @@ export class AuthenticationService {
         return this.http
           .post<any>(environment.URL + '/login', loginObject)
           .do((response: Response) => {
-            this.currentUser = <any>JSON.stringify(response);
-
+            // this.currentUser = <any>JSON.stringify(response);
+            setSessionStorge('user', response);
+            location.reload();
           });
       }
 
     signup(signupObject): Observable<any> {
-    return this.http
-        .post<any>(environment.URL + '/signup', signupObject)
+        return this.http
+            .post<any>(environment.URL + '/signup', signupObject)
     }
- 
-    logout() {
-        // remove user from local storage to log user out
-        localStorage.removeItem('currentUser');
-    }
+
 }
