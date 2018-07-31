@@ -17,11 +17,12 @@ export class AuthenticationService {
           .do((response: Response) => {
             // this.currentUser = <any>JSON.stringify(response);
             setSessionStorge('user', response);
-            location.reload();
+            // location.reload();
           });
       }
 
     signup(signupObject): Observable<any> {
+        console.log(signupObject);
         return this.http
             .post<any>(environment.URL + '/signup', signupObject)
     }

@@ -6,13 +6,14 @@ import { ToastrModule } from 'ngx-toastr';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 // Forms
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 // Components
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 // Providers
 import { AuthenticationService } from './services/auth';
+import { ManageRawService } from './services/raw';
 import 'rxjs/Rx';
 // Core
 import { AppComponent } from './app.component';
@@ -24,9 +25,13 @@ import { NavbarLoggedComponent } from './navbar-logged/navbar-logged.component';
 import { HomeComponent } from './home/home.component';
 import { HomePlaylistComponent } from './home-playlist/home-playlist.component';
 import { HomeSliderComponent } from './home-slider/home-slider.component';
+import { TorrentUploadComponent } from './torrent-upload/torrent-upload.component';
+// Shared
+import { SharedComponent } from './shared/shared.component';
 // Dynamics
 import { AdService } from './ad.service';
 import { AdDirective } from './ad.directive';
+import { DynComponentComponent } from './dyn-component/dyn-component.component';
 
 
 @NgModule({
@@ -41,10 +46,13 @@ import { AdDirective } from './ad.directive';
     HomeComponent,
     HomePlaylistComponent,
     HomeSliderComponent,
+    TorrentUploadComponent,
+    DynComponentComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     HttpModule,
     BrowserAnimationsModule,
@@ -57,9 +65,11 @@ import { AdDirective } from './ad.directive';
   ],
   providers: [
     AuthenticationService,
-    AdService
+    ManageRawService,
+    AdService,
+    SharedComponent
   ],
-  entryComponents: [HomeComponent, HomePlaylistComponent, HomeSliderComponent],
+  entryComponents: [HomeComponent, HomePlaylistComponent, HomeSliderComponent, TorrentUploadComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-
 import { Router } from '@angular/router';
 
 @Component({
@@ -21,7 +20,7 @@ export class NavbarLoggedComponent implements OnInit {
   logout() {
     this.showSuccess();
     sessionStorage.clear();
-    location.reload();
+    this._router.navigate(['/login']);
   }
 
   showSuccess() {

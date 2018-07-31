@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { AdComponent } from '../ad.component';
+// Webtorrent Lib
+declare var createPlayer: any;
 
 @Component({
   selector: 'app-home',
@@ -9,5 +11,13 @@ import { AdComponent } from '../ad.component';
 export class HomeComponent implements AdComponent {
 
   @Input() data: any;
+
+  constructor(
+  ) {
+  }
+
+  playSong(userTorrent) {
+    createPlayer(userTorrent);
+  }
 
 }

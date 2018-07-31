@@ -39,61 +39,44 @@ export class PlayComponent implements OnInit, OnDestroy {
   }
 
   loadComponent(pages) {
-
     let adItem;
-    let componentFactory;
-    let viewContainerRef;
-    let componentRef;
 
     switch (pages) {
       case 'login':
         adItem = this.ads[0];
-
-        componentFactory = this.componentFactoryResolver.resolveComponentFactory(adItem.component);
-
-        console.log(this.ads);
-
-        viewContainerRef = this.adHost.viewContainerRef; 
-        viewContainerRef.clear();
-
-        componentRef = viewContainerRef.createComponent(componentFactory);
-        (<AdComponent>componentRef.instance).data = adItem.data;
+        this.loadService(adItem);
         break;
       case 'signup':
         adItem = this.ads[1];
-        componentFactory = this.componentFactoryResolver.resolveComponentFactory(adItem.component);
-
-        viewContainerRef = this.adHost.viewContainerRef;
-        viewContainerRef.clear();
-
-        componentRef = viewContainerRef.createComponent(componentFactory);
-        (<AdComponent>componentRef.instance).data = adItem.data;
+        this.loadService(adItem);
         break;
       case 'home':
         adItem = this.ads[2];
-        componentFactory = this.componentFactoryResolver.resolveComponentFactory(adItem.component);
-
-        viewContainerRef = this.adHost.viewContainerRef;
-        viewContainerRef.clear();
-
-        componentRef = viewContainerRef.createComponent(componentFactory);
-        (<AdComponent>componentRef.instance).data = adItem.data;
+        this.loadService(adItem);
         break;
       case 'playlist':
         adItem = this.ads[4];
-        console.log(adItem);
-        componentFactory = this.componentFactoryResolver.resolveComponentFactory(adItem.component);
-
-        viewContainerRef = this.adHost.viewContainerRef;
-        viewContainerRef.clear();
-        
-        componentRef = viewContainerRef.createComponent(componentFactory);
-        (<AdComponent>componentRef.instance).data = adItem.data;
+        this.loadService(adItem);
+        break;
+      case 'upload':
+        adItem = this.ads[5];
+        this.loadService(adItem);
         break;
     }
+  }
 
-    // let componentRef = viewContainerRef.createComponent(componentFactory);
-    // (<AdComponent>componentRef.instance).data = adItem.data;
+  loadService(adItem) {
+    let componentFactory;
+    let viewContainerRef;
+    let componentRef;
+
+    componentFactory = this.componentFactoryResolver.resolveComponentFactory(adItem.component);
+        
+    viewContainerRef = this.adHost.viewContainerRef; 
+    viewContainerRef.clear();
+
+    componentRef = viewContainerRef.createComponent(componentFactory);
+    (<AdComponent>componentRef.instance).data = adItem.data;
   }
 
 }

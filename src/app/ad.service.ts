@@ -5,6 +5,7 @@ import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { HomeSliderComponent } from './home-slider/home-slider.component';
 import { HomePlaylistComponent } from './home-playlist/home-playlist.component';
+import { TorrentUploadComponent } from './torrent-upload/torrent-upload.component';
 // Dynamics
 import { AdItem } from './ad-item';
 
@@ -16,7 +17,8 @@ export class AdService {
         new AdItem(SignupComponent, { name: 'Signup' }),
         new AdItem(HomeComponent, { name: 'Home' }),
         new AdItem(HomeSliderComponent, { name: 'Home slider' }),
-        new AdItem(HomePlaylistComponent, { name: 'Home playlists'})
+        new AdItem(HomePlaylistComponent, { name: 'Home playlists'}),
+        new AdItem(TorrentUploadComponent, { name: 'Upload torrent'})
     ];
   }
 }
