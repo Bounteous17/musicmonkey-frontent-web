@@ -5,7 +5,8 @@
     </div>
     <div class="col">
         <label for="formGroupExampleInput">Artist</label>
-        <input type="text" [(ngModel)]="formArtist" class="form-control" placeholder="Last name">
+        <input type="text" (keyup)=keyupFindArtist() [(ngModel)]="formArtist" class="form-control" placeholder="Last name">
     </div>
+    <button *ngFor="let artist of relatedArtists" type="button" class="btn btn-primary">{{artist}}</button>
 </div>
 <input type="file" name="formTorrent" (change)="fileChange($event)">

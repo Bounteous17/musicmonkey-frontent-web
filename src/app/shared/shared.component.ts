@@ -3,21 +3,16 @@ import { NgModule } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
 @NgModule({
-    imports: [ CommonModule ],
+  imports: [CommonModule],
 })
 export class SharedComponent {
+  constructor(private _toastr: ToastrService) {}
 
-    constructor(
-        private _toastr: ToastrService,
-    ) { }
+  showSuccess(message) {
+    this._toastr.success('Completed', message);
+  }
 
-    showSuccess(message) {
-        this._toastr.success('Completed', message);
-    }
-
-    showError(message) {
-        this._toastr.error('Failed', message);
-    }
+  showError(message) {
+    this._toastr.error('Failed', message);
+  }
 }
-
-

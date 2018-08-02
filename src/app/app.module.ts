@@ -14,11 +14,10 @@ import { SignupComponent } from './signup/signup.component';
 // Providers
 import { AuthenticationService } from './services/auth';
 import { ManageRawService } from './services/raw';
+import { MainService } from './services/main';
 import 'rxjs/Rx';
-// Core
+// Components
 import { AppComponent } from './app.component';
-// Others
-import { routes } from './app.router';
 import { PlayComponent } from './play/play.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NavbarLoggedComponent } from './navbar-logged/navbar-logged.component';
@@ -29,10 +28,10 @@ import { TorrentUploadComponent } from './torrent-upload/torrent-upload.componen
 // Shared
 import { SharedComponent } from './shared/shared.component';
 // Dynamics
+import { routes } from './app.router';
 import { AdService } from './ad.service';
 import { AdDirective } from './ad.directive';
 import { DynComponentComponent } from './dyn-component/dyn-component.component';
-
 
 @NgModule({
   declarations: [
@@ -47,7 +46,7 @@ import { DynComponentComponent } from './dyn-component/dyn-component.component';
     HomePlaylistComponent,
     HomeSliderComponent,
     TorrentUploadComponent,
-    DynComponentComponent
+    DynComponentComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,16 +60,22 @@ import { DynComponentComponent } from './dyn-component/dyn-component.component';
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),
-    routes
+    routes,
   ],
   providers: [
     AuthenticationService,
     ManageRawService,
+    MainService,
     AdService,
-    SharedComponent
+    SharedComponent,
   ],
-  entryComponents: [HomeComponent, HomePlaylistComponent, HomeSliderComponent, TorrentUploadComponent],
-  bootstrap: [AppComponent]
+  entryComponents: [
+    HomeComponent,
+    HomePlaylistComponent,
+    HomeSliderComponent,
+    TorrentUploadComponent,
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule {
   constructor() {}
