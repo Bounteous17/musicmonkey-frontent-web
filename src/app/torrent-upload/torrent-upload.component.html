@@ -1,12 +1,18 @@
 <div class="row">
     <div class="col">
-        <label for="formGroupExampleInput">Song title</label>
+        <label>Song title</label>
         <input type="text" [(ngModel)]="formTitle" class="form-control" placeholder="Awesome song title here">
     </div>
     <div class="col">
-        <label for="formGroupExampleInput">Artist</label>
-        <input type="text" (keyup)=keyupFindArtist() [(ngModel)]="formArtist" class="form-control" placeholder="Last name">
+        <label for="formGroupExampleInput">Artist name</label>
+        <input type="text" [(ngModel)]="formArtistName" (keyup)="keyupFindArtist()" class="form-control" placeholder="The name of the artist">
     </div>
-    <button *ngFor="let artist of relatedArtists" type="button" class="btn btn-primary">{{artist}}</button>
+    <div class="col">
+        <select [(ngModel)]="formStyle">
+            <option *ngFor="let style of musicStyles" [ngValue]="style.code">{{style.name}}</option>
+        </select>
+    </div>
+    <button *ngFor="let artist of relatedArtists" (click)="defineArtist(artist._id, artist.username)" type="button" class="btn btn-primary">{{artist.username}}</button>
 </div>
-<input type="file" name="formTorrent" (change)="fileChange($event)">
+<input type="file" name="formTorrent" (change)="fileSelected($event)">
+<button (click)="submitForm()">Send</button>

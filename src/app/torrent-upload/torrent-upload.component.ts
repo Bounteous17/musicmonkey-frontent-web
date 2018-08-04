@@ -10,8 +10,63 @@ import { MainService } from '../services/main';
 })
 export class TorrentUploadComponent {
   formTitle: string;
-  formArtist: string;
+  formStyle: string;
   relatedArtists: Array<any>;
+  musicStyles: Array<any> = [
+    {
+      name: 'Indie Pop',
+      code: 'indie-pop',
+    },
+    {
+      name: 'Reggae',
+      code: 'reggae',
+    },
+    {
+      name: 'Rock',
+      code: 'rock',
+    },
+    {
+      name: 'Hip-Hop',
+      code: 'hip-hop',
+    },
+    {
+      name: 'Classical',
+      code: 'classical',
+    },
+    {
+      name: 'Dance',
+      code: 'dance',
+    },
+    {
+      name: 'Electronic',
+      code: 'electronic',
+    },
+    {
+      name: 'Jazz',
+      code: 'jazz',
+    },
+    {
+      name: 'Opera',
+      code: 'opera',
+    },
+    {
+      name: 'Drum & Bass',
+      code: 'drum-bass',
+    },
+    {
+      name: 'Chill',
+      code: 'chill',
+    },
+    {
+      name: 'Rap',
+      code: 'rap',
+    },
+  ];
+  formArtistId: any;
+  formArtistName: any;
+  fileList: any;
+  file: File;
+  fileSize: number;
 
   constructor(
     private _manageRawService: ManageRawService,
@@ -19,17 +74,19 @@ export class TorrentUploadComponent {
     private _sharedComponent: SharedComponent
   ) {}
 
-  fileChange(event) {
-    let fileList = event.target.files;
+  submitForm() {
+    if (!this.formArtistId) {
+      this.formArtistId = false;
+    }
 
-    if (fileList.length > 0) {
-      let file: File = fileList[0];
-      let fileSize: number = fileList[0].size;
-      if (fileSize < 314572) {
+    if (this.fileList.length > 0) {
+      if (this.fileSize < 314572) {
         let formData: FormData = new FormData();
-        formData.append('formTorrent', file);
+        formData.append('formTorrent', this.file);
         formData.append('formTitle', this.formTitle);
-        formData.append('formArtist', this.formArtist);
+        formData.append('formArtistName', this.formArtistName);
+        formData.append('formArtistId', this.formArtistId);
+        formData.append('formStyle', this.formStyle);
 
         this._manageRawService.upload(formData).subscribe(
           data => {
@@ -45,8 +102,14 @@ export class TorrentUploadComponent {
     }
   }
 
+  fileSelected(event) {
+    this.fileList = event.target.files;
+    this.file = this.fileList[0];
+    this.fileSize = this.fileList[0].size;
+  }
+
   keyupFindArtist() {
-    this._mainService.artistRelated({ artist: this.formArtist }).subscribe(
+    this._mainService.artistRelated({ artist: this.formArtistName }).subscribe(
       data => {
         this.relatedArtists = data.message;
       },
@@ -54,5 +117,10 @@ export class TorrentUploadComponent {
         console.log(error.message);
       }
     );
+  }
+
+  defineArtist(artistId, artistName) {
+    this.formArtistId = artistId;
+    this.formArtistName = artistName;
   }
 }
