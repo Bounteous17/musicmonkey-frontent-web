@@ -17,4 +17,8 @@ export class MainService {
       artistObject
     );
   }
+
+  homeRandomSongs(): Observable<any> {
+    return this.http.get<any>(environment.URL + '/users/random-songs-home');
+  }
 }
